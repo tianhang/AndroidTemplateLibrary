@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material.Light">
+        <item name="android:textColorPrimary">@color/white</item>
+        <!--   your app branding color for the app bar -->
+        <item name="android:colorPrimary">@color/light_blue_A200</item>
+    </style>
+    <style name="btn_style">
+        <item name="android:textColor">@color/green_600</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>
