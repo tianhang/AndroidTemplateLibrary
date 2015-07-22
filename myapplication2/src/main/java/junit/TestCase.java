@@ -31,7 +31,7 @@ public class TestCase extends AndroidTestCase {
         super.tearDown();
         db.close();
     }
-
+////
     public void test(){
         System.out.println("i am a test !");
         Log.i("tianhang", "tianhang test ");
