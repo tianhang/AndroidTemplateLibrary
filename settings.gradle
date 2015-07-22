@@ -1,1 +1,1 @@
-include ':myapplication2', ':UITemplateLibrary'
+include ':myapplication2', ':UITemplateLibrary', ':demo'
