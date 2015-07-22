@@ -36,7 +36,7 @@ public class PersonDAO {
             p.setName(name);
             p.setPhone(phone);
             personList.add(p);
-           // Log.i("database", p + "----->");
+            //Log.i("database", p + "----->");
         }
         cursor.close();
         return personList;
