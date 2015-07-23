@@ -1,38 +1,62 @@
 package com.example.student.pullrefresh;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.example.student.pullrefresh.view.RefreshListView;
+
+import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
-
+public class MainActivity extends Activity {
+    private RefreshListView refreshListView;
+    private ArrayList<String> list = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initView();
+        initData();
+    }
+    private void initView(){
         setContentView(R.layout.activity_main);
+        refreshListView = (RefreshListView)findViewById(R.id.refreshListView);
+    }
+    private void initData(){
+        for(int i =0;i<150;i++){
+            list.add("listview data ->"+i);
+        }
+        MyAdapter myAdapter = new MyAdapter();
+        refreshListView.setAdapter(myAdapter);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    class MyAdapter extends BaseAdapter{
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        @Override
+        public int getCount() {
+            return list.size();
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView textview = new TextView(MainActivity.this);
+            textview.setPadding(20,20,20,20);
+            textview.setTextSize(18);
+            textview.setText(list.get(position));
+            return textview;
+        }
     }
 }

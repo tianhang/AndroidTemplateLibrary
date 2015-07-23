@@ -1,4 +1,4 @@
-package com.example.student.pullrefresh;
+package com.example.student.pullrefresh.view;
 
 import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
@@ -19,4 +19,6 @@ public class RefreshListView extends ListView  {
     public RefreshListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
+
 }
