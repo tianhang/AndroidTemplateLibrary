@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
         refreshListView = (RefreshListView)findViewById(R.id.refreshListView);
     }
     private void initData(){
-        for(int i =0;i<150;i++){
+        for(int i =0;i<50;i++){
             list.add("listview data ->"+i);
         }
         // addHeadView must be operated before set adapter

@@ -80,6 +80,9 @@ public class RefreshListView extends ListView  {
 
     private void init(){
         initHeaderView();
+        initHeaderView();
+        initRotateAnimation();
+        initFooterView();
     }
 
     /**
@@ -98,6 +101,13 @@ public class RefreshListView extends ListView  {
         addHeaderView(headerView);
     }
 
+    private void initFooterView() {
+        footerView = View.inflate(getContext(), R.layout.layout_footer, null);
+        footerView.measure(0, 0);//主动通知系统去测量该view;
+        footerViewHeight = footerView.getMeasuredHeight();
+        footerView.setPadding(0, -footerViewHeight, 0, 0);
+        addFooterView(footerView);
+    }
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         switch (ev.getAction()){
