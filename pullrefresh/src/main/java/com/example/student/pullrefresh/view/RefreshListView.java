@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.RotateAnimation;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -47,7 +48,7 @@ import java.util.Date;
 });
  ------------------------------------------------------------------------------------
  */
-public class RefreshListView extends ListView  {
+public class RefreshListView extends ListView implements AbsListView.OnScrollListener {
 
     private ImageView iv_arrow;
     private ProgressBar pb_rotate;
@@ -79,7 +80,7 @@ public class RefreshListView extends ListView  {
     }
 
     private void init(){
-        initHeaderView();
+        setOnScrollListener(this);
         initHeaderView();
         initRotateAnimation();
         initFooterView();
@@ -229,9 +230,36 @@ public class RefreshListView extends ListView  {
     public void setOnRefreshListener(OnRefreshListener listener){
         this.listener = listener;
     }
+
+
+
     public interface OnRefreshListener{
         void onPullRefresh();
         void onLoadingMore();
     }
 
+    /**
+     * SCROLL_STATE_IDLE:闲置状态，就是手指松开
+     * SCROLL_STATE_TOUCH_SCROLL：手指触摸滑动，就是按着来滑动
+     * SCROLL_STATE_FLING：快速滑动后松开
+     */
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if(scrollState==OnScrollListener.SCROLL_STATE_IDLE
+                && getLastVisiblePosition()==(getCount()-1) &&!isLoadingMore){
+            isLoadingMore = true;
+
+            footerView.setPadding(0, 0, 0, 0);//显示出footerView
+            setSelection(getCount());//让listview最后一条显示出来
+
+            if(listener!=null){
+                listener.onLoadingMore();
+            }
+        }
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+    }
 }
