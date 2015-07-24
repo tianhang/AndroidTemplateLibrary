@@ -1,1 +1,1 @@
-include ':myapplication2', ':pullrefresh'
+include ':myapplication2', ':pullrefresh', ':slidemenu'
